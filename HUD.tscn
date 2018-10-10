@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://HUD.gd" type="Script" id=1]
+[ext_resource path="res://art/label/game_over.png" type="Texture" id=2]
+[ext_resource path="res://art/label/logo.png" type="Texture" id=3]
+[ext_resource path="res://art/label/get_ready.png" type="Texture" id=4]
+[ext_resource path="res://art/button/rank_button.png" type="Texture" id=5]
+[ext_resource path="res://art/button/start_button.png" type="Texture" id=6]
+[ext_resource path="res://art/font/Xolonium-Regular.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 32
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 7 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="HUD" type="Node2D"]
+
+script = ExtResource( 1 )
+
+[node name="game_over" type="Sprite" parent="." index="0"]
+
+position = Vector2( 142, 150 )
+texture = ExtResource( 2 )
+
+[node name="logo" type="Sprite" parent="." index="1"]
+
+position = Vector2( 142, 150 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="get_ready" type="Sprite" parent="." index="2"]
+
+position = Vector2( 142, 150 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="rank_button" type="TextureButton" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 167.0
+margin_top = 350.0
+margin_right = 271.0
+margin_bottom = 408.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 5 )
+_sections_unfolded = [ "Rect" ]
+
+[node name="start_button" type="TextureButton" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 18.0
+margin_top = 350.0
+margin_right = 122.0
+margin_bottom = 408.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 6 )
+_sections_unfolded = [ "Rect", "Textures" ]
+
+[node name="score_label" type="Label" parent="." index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 135.0
+margin_top = 60.0
+margin_right = 175.0
+margin_bottom = 99.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 5
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_constants/shadow_offset_x = 3
+custom_constants/shadow_offset_y = 0
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Pause", "Rect", "Size Flags", "Visibility", "custom_colors", "custom_constants", "custom_fonts" ]
+
+[connection signal="pressed" from="start_button" to="." method="_on_start_button_pressed"]
+
+

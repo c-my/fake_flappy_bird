@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Bird.gd" type="Script" id=1]
+[ext_resource path="res://art/bird/bird0.png" type="Texture" id=2]
+[ext_resource path="res://art/bird/bird1.png" type="Texture" id=3]
+[ext_resource path="res://art/sound/sfx_wing.ogg" type="AudioStream" id=4]
+[ext_resource path="res://art/sound/sfx_hit.ogg" type="AudioStream" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "fly",
+"speed": 8.0
+} ]
+
+[node name="Bird" type="Area2D" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Applied Forces", "Collision", "Material", "Pause", "Pickable", "Transform", "Visibility", "collision" ]
+
+[node name="Bird_action" type="AnimatedSprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+animation = "fly"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -17.0702, -0.266529, -5.03719, -11.7355, 6.87053, -11.7355, 12.9497, -5.9697, 12.9497, -0.517218, 16.7727, 2.42838, 13.2631, 9.94904, 3.73692, 10.0117, 3.1102, 11.8292, -7.0427, 11.9545, -17.1329, 3.61915 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="2"]
+
+rect = Rect2( -10, -10, 20, 20 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
+
+stream = ExtResource( 4 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+_sections_unfolded = [ "Pause" ]
+
+[node name="hit" type="AudioStreamPlayer" parent="." index="4"]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="body_entered" from="." to="." method="_on_Bird_body_entered"]
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+
+

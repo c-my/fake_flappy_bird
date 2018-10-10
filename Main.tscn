@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://art/background/day.png" type="Texture" id=2]
+[ext_resource path="res://Pillar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Bird.tscn" type="PackedScene" id=5]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=6]
+
+[node name="Node2D" type="Node2D"]
+
+script = ExtResource( 1 )
+
+[node name="background" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+centered = false
+_sections_unfolded = [ "Offset" ]
+
+[node name="Pillars" parent="." index="1" instance=ExtResource( 3 )]
+
+[node name="ground" parent="." index="2" instance=ExtResource( 4 )]
+
+speed = 1
+
+[node name="Bird" parent="." index="3" instance=ExtResource( 5 )]
+
+[node name="start_position" type="Node2D" parent="." index="4"]
+
+position = Vector2( 142, 256 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="HUD" parent="." index="5" instance=ExtResource( 6 )]
+
+[node name="start_timer" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="score_timer" type="Timer" parent="." index="7"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="dead" from="Bird" to="." method="game_over"]
+
+[connection signal="start" from="HUD" to="." method="start"]
+
+[connection signal="timeout" from="start_timer" to="." method="_on_start_timer_timeout"]
+
+[connection signal="timeout" from="score_timer" to="." method="_on_score_timer_timeout"]
+
+
